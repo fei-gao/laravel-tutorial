@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('projects', 'ProjectsController');
-
+// is equivalent to the below
 // Route::get('/projects', 'ProjectsController@index');
 // Route::post('/projects', 'ProjectsController@store');
 // Route::get('/projects/{project}', 'ProjectsController@show');
@@ -24,6 +24,8 @@ Route::resource('projects', 'ProjectsController');
 // Route::get('/projects/{project}/edit', 'ProjectsController@edit');
 // Route::patch('/projects/{project}', 'ProjectsController@update');
 // Route::delete('/projects/{project}', 'ProjectsController@destroy');
+
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
 
 
