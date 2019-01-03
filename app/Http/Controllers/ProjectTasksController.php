@@ -18,10 +18,7 @@ class ProjectTasksController extends Controller
     }
 
     public function update(Task $task){
-       $task->update([
-           'completed' => request()->has('completed')
-       ]);
-
-       return back();
+      request()->has('completed') ? $task->complete() : $task->incomplete();
+      return back();
     }
 }
