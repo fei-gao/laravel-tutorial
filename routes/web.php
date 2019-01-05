@@ -10,11 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-app()->singleton('App\Services\Twitter', function(){
-    return new \App\Services\Twitter('adsfadsfadsf');
-});
+use App\Services\Twitter;
+use App\Repositories\UserRepository;
 
-Route::get('/', function () {
+Route::get('/', function (UserRepository $users) {
+    dd($users);
     return view('welcome');
 });
 
