@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+app()->singleton('App\Services\Twitter', function(){
+    return new \App\Services\Twitter('adsfadsfadsf');
+});
 
 Route::get('/', function () {
     return view('welcome');
