@@ -14,7 +14,7 @@ use App\Services\Twitter;
 use App\Repositories\UserRepository;
 
 Route::get('/', function (Twitter $twitter) {
-    dd($twitter);
+    // dd($twitter);
     return view('welcome');
 });
 
@@ -34,3 +34,7 @@ Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
