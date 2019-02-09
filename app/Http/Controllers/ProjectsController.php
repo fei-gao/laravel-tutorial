@@ -25,6 +25,7 @@ class ProjectsController extends Controller
     public function show(Project $project, Twitter $twitter){
     //   $twitter = app('twitter');
     //   dd($twitter);
+        $this->authorize('update', $project);
       return view('projects.show', compact('project'));
     }
 
@@ -52,6 +53,7 @@ class ProjectsController extends Controller
     }
 
     public function update(Project $project){
+        $this->authorize('update', $project);
         $project->update(request(['title','description']));
 
         // $project->title = request('title');
@@ -63,6 +65,7 @@ class ProjectsController extends Controller
     }
 
     public function destroy(Project $project){
+        $this->authorize('update', $project);
         $project->delete();
         return redirect('/projects');
     }
