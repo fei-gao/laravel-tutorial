@@ -36,11 +36,8 @@ class ProjectsController extends Controller
         // form validation
         $attributes = this.$this->validateProject();
         $attributes['owner_id'] = auth()->id();
-        $project = Project::create($attributes);
         Project::create($attributes );
-        Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
+
         // $project = new Project();
 
         // $project -> title = request('title');
