@@ -24,8 +24,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(Gate $gate)
     {
         $this->registerPolicies();
-        $gate->before(function($user){
-            return $user->id == 1; // this is an admin id
-        });
+//        $gate->before(function($user){
+//            return $user->id == 1; // this is an admin id
+//        });
     }
 }
