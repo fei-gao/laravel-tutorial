@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Services\Twitter;
+use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -26,6 +27,7 @@ class ProjectsController extends Controller
     public function show(Project $project, Twitter $twitter){
     //   $twitter = app('twitter');
     //   dd($twitter);
+
         $this->authorize('update', $project);
       return view('projects.show', compact('project'));
     }
@@ -34,8 +36,11 @@ class ProjectsController extends Controller
         // form validation
         $attributes = this.$this->validateProject();
         $attributes['owner_id'] = auth()->id();
-        
+        $project = Project::create($attributes);
         Project::create($attributes );
+        Mail::to($project->owner->email)->send(
+            new ProjectCreated($project)
+        );
         // $project = new Project();
 
         // $project -> title = request('title');
