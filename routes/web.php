@@ -12,10 +12,14 @@
 */
 use App\Services\Twitter;
 use App\Repositories\UserRepository;
+use App\Notifications\SubscriptionRenewalFailed;
 
 Route::get('/', function (Twitter $twitter) {
     // dd($twitter);
-    return view('welcome');
+//    return view('welcome');
+    $user = App\User::first();
+    $user->notify(new SubscriptionRenewalFailed);
+    return 'done';
 });
 
 Route::resource('projects', 'ProjectsController');
