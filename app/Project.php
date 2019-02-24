@@ -12,14 +12,9 @@ class Project extends Model {
         'title', 'description','owner_id'
     ];
 
-    protected static function boot(){
-        parent::boot();
-        static::created(function($project){
-            Mail::to($project->owner->email)->send(
-                new ProjectCreated($project)
-            );
-        });
-    }
+    protected $dispatchesEvents = [
+        'created' => ProjectCreated::class
+    ];
 
     public function owner(){
         return $this->belongsTo(User::class);
